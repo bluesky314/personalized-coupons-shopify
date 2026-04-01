@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id              String    @id
+  shop            String
+  state           String
+  isOnline        Boolean   @default(false)
+  scope           String?
+  expires         DateTime?
+  accessToken     String
+  userId          BigInt?
+  firstName       String?
+  lastName        String?
+  email           String?
+  accountOwner    Boolean   @default(false)
+  locale          String?
+  collaborator    Boolean   @default(false)
+  emailVerified   Boolean   @default(false)
+}
+
+model ScoringLog {
+  id         Int      @id @default(autoincrement())
+  shop       String
+  customerId String
+  tier       String
+  score      Float
+  archetype  String?
+  strategies String?  // JSON string of active strategies
+  createdAt  DateTime @default(now())
+
+  @@index([shop, customerId])
+  @@index([shop, createdAt])
+}
+
+model ShopSettings {
+  id                  Int      @id @default(autoincrement())
+  shop                String   @unique
+  suppressThreshold   Float    @default(0.65)
+  nudgeThreshold      Float    @default(0.384)
+  fullCouponPct       Int      @default(25)
+  enabledStrategies   String   @default("[\"aov_stretch\",\"lapse_reactivation\",\"category_upgrade\",\"loyalty_milestone\",\"frequency_booster\",\"highest_basket\"]")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}

@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  scoring-service:
+    build:
+      context: ..
+      dockerfile: shopify_app/scoring-service/Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - OUTPUTS_DIR=/app/outputs
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8081/health')"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - SCORING_SERVICE_URL=http://scoring-service:8081
+      - DATABASE_URL=file:./prisma/dev.db
+      - SHOPIFY_API_KEY=${SHOPIFY_API_KEY}
+      - SHOPIFY_API_SECRET=${SHOPIFY_API_SECRET}
+      - SHOPIFY_APP_URL=${SHOPIFY_APP_URL}
+      - SCOPES=read_customers,write_customers,read_orders,read_products,write_discounts,read_discounts
+    depends_on:
+      scoring-service:
+        condition: service_healthy

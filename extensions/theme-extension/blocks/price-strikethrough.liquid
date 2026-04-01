@@ -1,0 +1,61 @@
+{% comment %}
+  Personalized Price Display
+  Shows original price struck through with personalized discounted price
+{% endcomment %}
+
+{% if customer and product %}
+  {% assign scoring_raw = customer.metafields.personalized_coupons.scoring.value %}
+
+  {% if scoring_raw %}
+    {% assign tier = scoring_raw.tier %}
+    {% assign pct = 0 %}
+
+    {% if tier == "NUDGE" %}
+      {% assign pct = scoring_raw.nudge_pct %}
+    {% elsif tier == "FULL_COUPON" %}
+      {% assign pct = scoring_raw.full_pct %}
+    {% endif %}
+
+    {% if pct > 0 %}
+      {% assign original_price = product.price %}
+      {% assign discount_multiplier = 100 | minus: pct %}
+      {% assign discounted = original_price | times: discount_multiplier | divided_by: 100 %}
+
+      <div class="pc-price-display" style="margin: 8px 0;">
+        <span style="text-decoration: line-through; color: #94a3b8; font-size: 0.9em;">
+          {{ original_price | money }}
+        </span>
+        <span style="color: #dc2626; font-weight: 700; font-size: 1.1em; margin-left: 8px;">
+          {{ discounted | money }}
+        </span>
+        <span style="
+          background: #fef2f2;
+          color: #dc2626;
+          font-size: 0.75em;
+          font-weight: 600;
+          padding: 2px 8px;
+          border-radius: 12px;
+          margin-left: 8px;
+        ">
+          -{{ pct }}%
+        </span>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Personalized Price",
+  "target": "section",
+  "templates": ["product"],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_savings_badge",
+      "label": "Show savings badge",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

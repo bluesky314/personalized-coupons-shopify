@@ -1,0 +1,17 @@
+api_version = "2025-01"
+
+[[extensions]]
+name = "personalized-discount"
+handle = "personalized-discount"
+uid = "4ba3244e-0eba-5c2b-56a1-4f6db9c14ebf0722182f"
+type = "function"
+description = "AI-powered personalized discounts at checkout"
+
+  [[extensions.targeting]]
+  target = "purchase.product-discount.run"
+  input_query = "src/input.graphql"
+  export = "run"
+
+  [extensions.build]
+  command = "echo 'build complete'"
+  path = "dist/function.wasm"

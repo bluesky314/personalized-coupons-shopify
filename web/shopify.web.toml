@@ -1,0 +1,3 @@
+[commands]
+dev = "npm exec -- remix vite:dev"
+build = "npm exec -- remix vite:build"

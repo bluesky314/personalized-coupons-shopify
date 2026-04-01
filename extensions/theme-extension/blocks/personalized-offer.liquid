@@ -1,0 +1,147 @@
+{% comment %}
+  Personalized Coupons — Storefront Block
+  Shows the customer their personalized discount if they're logged in.
+  Reads from customer metafields written by our scoring engine.
+{% endcomment %}
+
+{% if customer %}
+  {% assign scoring_raw = customer.metafields.personalized_coupons.scoring.value %}
+
+  {% if scoring_raw %}
+    {% assign tier = scoring_raw.tier %}
+
+    {% if tier == "NUDGE" %}
+      <div class="pc-offer-banner" style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin: 12px 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        text-align: center;
+      ">
+        <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">
+          🎉 Special offer just for you
+        </div>
+        <div style="font-size: 20px; font-weight: 700;">
+          {{ scoring_raw.nudge_pct }}% OFF
+        </div>
+        <div style="font-size: 12px; opacity: 0.9; margin-top: 4px;">
+          Applied automatically at checkout
+        </div>
+      </div>
+
+    {% elsif tier == "FULL_COUPON" %}
+      <div class="pc-offer-banner" style="
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin: 12px 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        text-align: center;
+      ">
+        <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">
+          🔥 Exclusive discount for you
+        </div>
+        <div style="font-size: 20px; font-weight: 700;">
+          {{ scoring_raw.full_pct }}% OFF
+        </div>
+        <div style="font-size: 12px; opacity: 0.9; margin-top: 4px;">
+          Applied automatically at checkout
+        </div>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Strategy-specific messages {%- endcomment -%}
+    {% assign strategies = scoring_raw.strategies %}
+
+    {% if strategies.aov_stretch.active %}
+      <div class="pc-strategy-hint" style="
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-left: 3px solid #0284c7;
+        padding: 10px 14px;
+        border-radius: 6px;
+        margin: 8px 0;
+        font-size: 13px;
+        color: #0c4a6e;
+      ">
+        📈 <strong>Spend Rs. {{ strategies.aov_stretch.target_rs }}</strong> to unlock {{ strategies.aov_stretch.coupon_pct }}% off
+      </div>
+    {% endif %}
+
+    {% if strategies.loyalty_milestone.active %}
+      <div class="pc-strategy-hint" style="
+        background: #faf5ff;
+        border: 1px solid #e9d5ff;
+        border-left: 3px solid #7c3aed;
+        padding: 10px 14px;
+        border-radius: 6px;
+        margin: 8px 0;
+        font-size: 13px;
+        color: #4c1d95;
+      ">
+        🏆 <strong>{{ strategies.loyalty_milestone.coupon_pct }}% off</strong> — loyalty milestone reward!
+      </div>
+    {% endif %}
+
+    {% if strategies.highest_basket.max_order_value %}
+      <div class="pc-strategy-hint" style="
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        border-left: 3px solid #d97706;
+        padding: 10px 14px;
+        border-radius: 6px;
+        margin: 8px 0;
+        font-size: 13px;
+        color: #78350f;
+      ">
+        🎉 Spend over <strong>Rs. {{ strategies.highest_basket.max_order_value }}</strong> for an extra 5% off — beat your personal best!
+      </div>
+    {% endif %}
+
+    {% if strategies.lapse_reactivation.active %}
+      <div class="pc-strategy-hint" style="
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
+        border-left: 3px solid #ea580c;
+        padding: 10px 14px;
+        border-radius: 6px;
+        margin: 8px 0;
+        font-size: 13px;
+        color: #7c2d12;
+      ">
+        ⏰ <strong>Welcome back!</strong> {{ strategies.lapse_reactivation.coupon_pct }}% off — limited time offer
+      </div>
+    {% endif %}
+
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Personalized Offer",
+  "target": "section",
+  "templates": ["product", "cart", "collection", "index"],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_strategies",
+      "label": "Show strategy-specific messages",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "banner_style",
+      "label": "Banner style",
+      "options": [
+        { "value": "gradient", "label": "Gradient" },
+        { "value": "minimal", "label": "Minimal" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "gradient"
+    }
+  ]
+}
+{% endschema %}

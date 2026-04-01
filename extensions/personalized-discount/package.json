@@ -1,0 +1,14 @@
+{
+  "name": "personalized-discount",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm exec -- shopify app function build",
+    "preview": "npm exec -- shopify app function run",
+    "typegen": "npm exec -- shopify app function typegen"
+  },
+  "dependencies": {
+    "@shopify/shopify_function": "2.0.0"
+  }
+}
