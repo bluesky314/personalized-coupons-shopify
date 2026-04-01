@@ -21,7 +21,6 @@ RUN npx remix vite:build
 RUN npx prisma db push --accept-data-loss || true
 
 ENV NODE_ENV=production
-ENV PORT=3000
 EXPOSE 3000
 
-CMD ["node", "node_modules/.bin/remix-serve", "build/server/index.js"]
+CMD ["sh", "-c", "npx prisma db push --accept-data-loss 2>/dev/null; node node_modules/.bin/remix-serve build/server/index.js"]
