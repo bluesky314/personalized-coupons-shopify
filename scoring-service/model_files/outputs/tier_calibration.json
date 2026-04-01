@@ -1,0 +1,237 @@
+{
+  "suppress_threshold": 0.65,
+  "nudge_threshold": 0.3837,
+  "suppress_rate_floor_used": 0.75,
+  "nudge_rate_floor_used": 0.45,
+  "tier_stats": [
+    {
+      "tier": "SUPPRESS",
+      "n": 556517,
+      "pct_of_total": 63.3,
+      "da_rate": 0.9155,
+      "avg_score": 0.8432,
+      "avg_disc_rs": 610.26,
+      "avg_order_rs": 4058.93
+    },
+    {
+      "tier": "NUDGE",
+      "n": 102789,
+      "pct_of_total": 11.7,
+      "da_rate": 0.5173,
+      "avg_score": 0.5262,
+      "avg_disc_rs": 737.77,
+      "avg_order_rs": 5982.89
+    },
+    {
+      "tier": "FULL_COUPON",
+      "n": 219755,
+      "pct_of_total": 25.0,
+      "da_rate": 0.171,
+      "avg_score": 0.1402,
+      "avg_disc_rs": 1080.55,
+      "avg_order_rs": 6220.94
+    }
+  ],
+  "score_buckets": [
+    {
+      "bin": 0,
+      "score_min": 0.0249,
+      "score_max": 0.0371,
+      "score_mid": 0.0287,
+      "n": 43954,
+      "da_rate": 0.0125,
+      "coupon_rate": 0.9875,
+      "avg_disc_rs": 1808.02
+    },
+    {
+      "bin": 1,
+      "score_min": 0.0371,
+      "score_max": 0.0728,
+      "score_mid": 0.0511,
+      "n": 43953,
+      "da_rate": 0.0861,
+      "coupon_rate": 0.9139,
+      "avg_disc_rs": 986.27
+    },
+    {
+      "bin": 2,
+      "score_min": 0.0728,
+      "score_max": 0.1449,
+      "score_mid": 0.1037,
+      "n": 43953,
+      "da_rate": 0.1525,
+      "coupon_rate": 0.8475,
+      "avg_disc_rs": 808.35
+    },
+    {
+      "bin": 3,
+      "score_min": 0.1449,
+      "score_max": 0.2528,
+      "score_mid": 0.1954,
+      "n": 43953,
+      "da_rate": 0.2502,
+      "coupon_rate": 0.7498,
+      "avg_disc_rs": 784.11
+    },
+    {
+      "bin": 4,
+      "score_min": 0.2528,
+      "score_max": 0.3837,
+      "score_mid": 0.3167,
+      "n": 43953,
+      "da_rate": 0.354,
+      "coupon_rate": 0.646,
+      "avg_disc_rs": 802.97
+    },
+    {
+      "bin": 5,
+      "score_min": 0.3837,
+      "score_max": 0.5116,
+      "score_mid": 0.4501,
+      "n": 43953,
+      "da_rate": 0.4524,
+      "coupon_rate": 0.5476,
+      "avg_disc_rs": 781.02
+    },
+    {
+      "bin": 6,
+      "score_min": 0.5116,
+      "score_max": 0.618,
+      "score_mid": 0.5676,
+      "n": 43953,
+      "da_rate": 0.5453,
+      "coupon_rate": 0.4547,
+      "avg_disc_rs": 707.66
+    },
+    {
+      "bin": 7,
+      "score_min": 0.618,
+      "score_max": 0.704,
+      "score_mid": 0.6642,
+      "n": 43953,
+      "da_rate": 0.6529,
+      "coupon_rate": 0.3471,
+      "avg_disc_rs": 726.33
+    },
+    {
+      "bin": 8,
+      "score_min": 0.704,
+      "score_max": 0.7661,
+      "score_mid": 0.7376,
+      "n": 43953,
+      "da_rate": 0.7353,
+      "coupon_rate": 0.2647,
+      "avg_disc_rs": 660.39
+    },
+    {
+      "bin": 9,
+      "score_min": 0.7661,
+      "score_max": 0.8097,
+      "score_mid": 0.7895,
+      "n": 43953,
+      "da_rate": 0.8015,
+      "coupon_rate": 0.1985,
+      "avg_disc_rs": 590.56
+    },
+    {
+      "bin": 10,
+      "score_min": 0.8097,
+      "score_max": 0.8392,
+      "score_mid": 0.8263,
+      "n": 43953,
+      "da_rate": 0.8672,
+      "coupon_rate": 0.1328,
+      "avg_disc_rs": 560.56
+    },
+    {
+      "bin": 11,
+      "score_min": 0.8392,
+      "score_max": 0.8564,
+      "score_mid": 0.849,
+      "n": 43953,
+      "da_rate": 0.917,
+      "coupon_rate": 0.083,
+      "avg_disc_rs": 510.88
+    },
+    {
+      "bin": 12,
+      "score_min": 0.8564,
+      "score_max": 0.8669,
+      "score_mid": 0.8622,
+      "n": 43953,
+      "da_rate": 0.9492,
+      "coupon_rate": 0.0508,
+      "avg_disc_rs": 426.08
+    },
+    {
+      "bin": 13,
+      "score_min": 0.8669,
+      "score_max": 0.8738,
+      "score_mid": 0.8707,
+      "n": 43953,
+      "da_rate": 0.9674,
+      "coupon_rate": 0.0326,
+      "avg_disc_rs": 428.48
+    },
+    {
+      "bin": 14,
+      "score_min": 0.8738,
+      "score_max": 0.8787,
+      "score_mid": 0.8765,
+      "n": 43953,
+      "da_rate": 0.975,
+      "coupon_rate": 0.025,
+      "avg_disc_rs": 372.94
+    },
+    {
+      "bin": 15,
+      "score_min": 0.8787,
+      "score_max": 0.8821,
+      "score_mid": 0.8806,
+      "n": 43953,
+      "da_rate": 0.9779,
+      "coupon_rate": 0.0221,
+      "avg_disc_rs": 420.87
+    },
+    {
+      "bin": 16,
+      "score_min": 0.8821,
+      "score_max": 0.884,
+      "score_mid": 0.8832,
+      "n": 43953,
+      "da_rate": 0.9806,
+      "coupon_rate": 0.0194,
+      "avg_disc_rs": 582.1
+    },
+    {
+      "bin": 17,
+      "score_min": 0.884,
+      "score_max": 0.8848,
+      "score_mid": 0.8845,
+      "n": 43953,
+      "da_rate": 0.9856,
+      "coupon_rate": 0.0144,
+      "avg_disc_rs": 516.62
+    },
+    {
+      "bin": 18,
+      "score_min": 0.8848,
+      "score_max": 0.8851,
+      "score_mid": 0.885,
+      "n": 43953,
+      "da_rate": 0.9944,
+      "coupon_rate": 0.0056,
+      "avg_disc_rs": 394.75
+    },
+    {
+      "bin": 19,
+      "score_min": 0.8851,
+      "score_max": 0.8852,
+      "score_mid": 0.8852,
+      "n": 43953,
+      "da_rate": 0.9996,
+      "coupon_rate": 0.0004,
+      "avg_disc_rs": 244.3
+    }
+  ]
+}
